@@ -23,7 +23,14 @@ npx supabase db reset     # migraciones + seed.sql
 
 ```bash
 npx supabase link --project-ref <PROJECT_REF>
-npx supabase db push
+npx supabase db push --remote
+```
+
+Para cargar los datos DEMO en el proyecto remoto (opcional, se muestran con
+etiqueta DEMO):
+
+```bash
+npx supabase db query --remote --file supabase/seed.sql --yes
 ```
 
 También puedes ejecutar los archivos en orden desde el SQL Editor. No edites una

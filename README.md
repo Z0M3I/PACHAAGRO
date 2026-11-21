@@ -7,9 +7,13 @@ alertas, anuncios comunitarios, reuniones, contenido educativo y consultas
 climáticas por **departamento, municipio, comunidad y cultivo**, con una
 integración preparada para la **API oficial de WhatsApp Cloud de Meta**.
 
-> **Estado del despliegue:** el proyecto está preparado para Vercel + Supabase,
-> pero **no se ha desplegado** desde este entorno porque no se proporcionaron
-> credenciales. Los pasos exactos están en [`docs/DESPLIEGUE.md`](docs/DESPLIEGUE.md).
+> **Estado:** desplegado en producción en **https://pachaagro.vercel.app**
+> con Supabase real (migraciones, RLS y datos DEMO aplicados). WhatsApp opera
+> en **modo simulación** porque aún no se configuraron credenciales de Meta.
+> El clima usa Open-Meteo en vivo y se identifica como fuente no oficial.
+>
+> La guía operativa está en [`docs/DESPLIEGUE.md`](docs/DESPLIEGUE.md). Las
+> credenciales de administrador no se guardan en el repositorio.
 
 ---
 
@@ -149,11 +153,12 @@ Verificación ejecutada en este repositorio:
 
 - `npm run lint` → sin errores.
 - `npm run typecheck` → sin errores.
-- `npm run test` → **34 pruebas aprobadas**.
+- `npm run test` → **37 pruebas aprobadas**.
 - `npm run build` → build de producción correcto para todas las rutas.
-- Smoke test de producción: páginas públicas, panel de productor, admin y API
-  de clima responden correctamente; las rutas privadas redirigen sin sesión;
-  el webhook responde `503` cuando no está configurado.
+- Smoke test de producción en Vercel: páginas públicas, login real con Supabase,
+  panel de productor, panel administrativo, RLS, creación/borrado de una
+  publicación, clima en vivo, notificación simulada y webhook deshabilitado
+  responden según lo esperado.
 
 ---
 

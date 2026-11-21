@@ -4,15 +4,17 @@
 
 | Elemento | Estado |
 |---|---|
-| Código y build de producción | ✅ Verificados localmente |
+| Código y build de producción | ✅ Verificados |
 | Repositorio remoto | ✅ `git@github.com:Z0M3I/PACHAAGRO.git` |
-| Vercel | ⛔ No desplegado desde este entorno |
-| Supabase remoto | ⛔ No aprovisionado desde este entorno |
-| WhatsApp Cloud API | ⛔ Sin credenciales; modo simulación |
-| Fuente meteorológica oficial | ⛔ Adaptador configurable, sin credenciales |
+| Vercel | ✅ Desplegado en https://pachaagro.vercel.app |
+| Supabase remoto | ✅ Proyecto `PACHAAGRO`; 3 migraciones + seed DEMO aplicados |
+| Autenticación | ✅ Supabase Auth con cuentas reales y RLS |
+| WhatsApp Cloud API | ⚠️ Sin credenciales; modo simulación verificado |
+| Clima | ✅ Open-Meteo en vivo; fuente oficial opcional sin configurar |
+| Datos | ⚠️ Contenido DEMO identificado; reemplazar antes de uso oficial |
 
-**No afirmamos que la aplicación esté en línea.** Los pasos siguientes deben
-ejecutarse con las cuentas del equipo.
+La aplicación está en línea. Las secciones siguientes documentan cómo
+reproducir o modificar el despliegue. **No incluir credenciales en Git.**
 
 ---
 
@@ -46,7 +48,7 @@ Con CLI:
 ```bash
 npx supabase login
 npx supabase link --project-ref <PROJECT_REF>
-npx supabase db push
+npx supabase db push --remote
 ```
 
 Sin CLI:
