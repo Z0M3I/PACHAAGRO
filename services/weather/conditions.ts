@@ -1,0 +1,27 @@
+/** Códigos WMO usados por Open-Meteo, traducidos a lenguaje claro. */
+export function describeWeatherCode(code: number): string {
+  if (code === 0) return "Despejado";
+  if (code === 1) return "Mayormente despejado";
+  if (code === 2) return "Parcialmente nublado";
+  if (code === 3) return "Nublado";
+  if (code === 45 || code === 48) return "Niebla";
+  if (code >= 51 && code <= 57) return "Llovizna";
+  if (code >= 61 && code <= 67) return "Lluvia";
+  if (code >= 71 && code <= 77) return "Nieve";
+  if (code >= 80 && code <= 82) return "Chubascos";
+  if (code === 85 || code === 86) return "Chubascos de nieve";
+  if (code === 95) return "Tormenta";
+  if (code === 96 || code === 99) return "Tormenta con granizo";
+  return "Condición no determinada";
+}
+
+export function weatherIconKey(code: number): string {
+  if (code === 0) return "sun";
+  if (code <= 3) return "cloud-sun";
+  if (code === 45 || code === 48) return "fog";
+  if (code >= 51 && code <= 67) return "rain";
+  if (code >= 71 && code <= 77) return "snow";
+  if (code >= 80 && code <= 82) return "rain";
+  if (code >= 95 && code <= 99) return "storm";
+  return "cloud";
+}
