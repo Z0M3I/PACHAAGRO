@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="PACHAAGRO">
+  <rect width="64" height="64" rx="16" fill="#145A32"/>
+  <circle cx="44" cy="20" r="7" fill="#E8B949"/>
+  <path d="M8 46L24 25L34 38L42 29L56 46V56H8V46Z" fill="#27864A"/>
+  <path d="M8 50L22 35L32 46L44 33L56 48V56H8V50Z" fill="#E7F3E8" opacity="0.9"/>
+  <path d="M31 42C31 34 35 29 43 27C43 35 38 40 31 42Z" fill="#E8B949"/>
+</svg>
