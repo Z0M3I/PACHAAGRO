@@ -42,3 +42,5 @@ yarn-error.log*
 # local supabase
 supabase/.branches
 supabase/.temp
+.env*
+.admin-credentials.txt
