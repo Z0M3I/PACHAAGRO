@@ -374,7 +374,7 @@ export const demoMeetings: Meeting[] = [
     virtualUrl: null,
     departmentId: demoDepartments[2]!.id,
     municipalityId: demoMunicipalities[13]!.id,
-    communityId: demoCommunities[4]!.id,
+    communityId: null,
     cropId: demoCrops[3]!.id,
     authorId: demoProfiles[2]!.id,
     isDemo: true,

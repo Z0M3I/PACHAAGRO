@@ -49,11 +49,21 @@ export async function fetchOpenMeteo(
       {
         next: { revalidate: 1800 },
         signal: AbortSignal.timeout(10_000),
-        headers: { Accept: "application/json" },
+        headers: {
+          Accept: "application/json",
+          "User-Agent": "PACHAAGRO/1.0 (+https://pachaagro.vercel.app)",
+        },
       },
     );
 
     if (!response.ok) {
+      const detail = (await response.text().catch(() => "")).slice(0, 160);
+      console.error(
+        "[weather] Open-Meteo HTTP error:",
+        response.status,
+        response.headers.get("content-type"),
+        detail,
+      );
       return {
         ok: false,
         data: null,
@@ -62,7 +72,26 @@ export async function fetchOpenMeteo(
       };
     }
 
-    const parsed = openMeteoSchema.safeParse(await response.json());
+    const rawBody = await response.text();
+    let rawJson: unknown;
+    try {
+      rawJson = JSON.parse(rawBody);
+    } catch {
+      console.error(
+        "[weather] Open-Meteo non-JSON response:",
+        response.status,
+        response.headers.get("content-type"),
+        rawBody.slice(0, 160),
+      );
+      return {
+        ok: false,
+        data: null,
+        error: "El servicio meteorológico devolvió una respuesta no válida.",
+        sourceAttempted: "open-meteo",
+      };
+    }
+
+    const parsed = openMeteoSchema.safeParse(rawJson);
     if (!parsed.success) {
       return {
         ok: false,
@@ -113,6 +142,15 @@ export async function fetchOpenMeteo(
         "Datos de un proveedor meteorológico internacional. No constituyen una alerta oficial boliviana.",
     };
   } catch (error) {
+    if (error instanceof Error) {
+      const cause = (error as Error & { cause?: unknown }).cause;
+      console.error(
+        "[weather] Open-Meteo fetch failed:",
+        error.name,
+        error.message,
+        cause ? String(cause) : "",
+      );
+    }
     return {
       ok: false,
       data: null,
