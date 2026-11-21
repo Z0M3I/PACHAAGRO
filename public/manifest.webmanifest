@@ -1,0 +1,18 @@
+{
+  "name": "PACHAAGRO",
+  "short_name": "PACHAAGRO",
+  "description": "Comunicación y educación agrícola para Bolivia.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#FBFAF5",
+  "theme_color": "#145A32",
+  "lang": "es-BO",
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}
